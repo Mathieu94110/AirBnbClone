@@ -1,7 +1,10 @@
 import Image from "next/image";
 import AirBnbLogo from "../../public/airbnb-logo-0.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faGlobe, faMenu } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faGlobe /* , faMenu */,
+} from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
 
 function Header() {
@@ -18,7 +21,7 @@ function Header() {
         />
         <FontAwesomeIcon
           icon={faSearch}
-          style={{ fontSize: 30 }}
+          style={{ fontSize: 24 }}
           className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer lg:mx-2"
         />
       </div>
@@ -30,11 +33,11 @@ function Header() {
           className="h-6 cursor-pointer"
         />
         <div className="flex items-center space-x-2 border-2 p-2 rounded-full">
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={faMenu}
             style={{ fontSize: 30 }}
             className="h-6"
-          />
+          /> */}
           <FontAwesomeIcon
             icon={faUserCircle}
             style={{ fontSize: 30 }}

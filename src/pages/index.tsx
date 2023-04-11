@@ -1,19 +1,64 @@
 import Head from "next/head";
 import Header from "@/components/Header";
 import Banner from "@/components/Banner";
+import SmallCard from "@/components/SmallCard";
+import { AroundCards } from "../../typings";
+import MediumCard from "@/components/MediumCard";
 
-export default function Home() {
+export default function Home({
+  aroundOffers,
+  cardsData,
+}: {
+  aroundOffers: AroundCards[] | undefined;
+  cardsData: AroundCards[] | undefined;
+}) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="">
       <Head>
         <title>AirBnbClone</title>
         <script src="https://kit.fontawesome.com/1002cebf8d.js"></script>
       </Head>
       <Header />
       <Banner />
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <main className="max-w-7xl mx-auto px-8 sm:px-16">
+        <section className="pt-6">
+          <h2 className="text-4xl font-semibold pb-5">Autour de vous</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {aroundOffers?.map(({ img, distance, location }) => (
+              <SmallCard
+                key={img}
+                img={img}
+                location={location}
+                distance={distance}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-4-xl font-semibold py-8">Parter en France</h2>
+          <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 ml-3">
+            {cardsData?.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const aroundOffers = await fetch("https://www.jsonkeeper.com/b/O34X").then(
+    (res) => res.json()
+  );
+  const cardsData = await fetch("https://www.jsonkeeper.com/b/CYIT").then(
+    (res) => res.json()
+  );
+  return {
+    props: {
+      aroundOffers,
+      cardsData,
+    },
+  };
 }
