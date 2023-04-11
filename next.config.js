@@ -8,6 +8,7 @@ module.exports = {
       "st4.depositphotos.com",
       "static3.depositphotos.com",
       "st.depositphotos.com",
+      "news.airbnb.com",
     ],
   },
 };
