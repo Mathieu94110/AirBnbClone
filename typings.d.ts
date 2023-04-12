@@ -4,3 +4,13 @@ export type AroundCards = {
   distance: string;
   title: string;
 };
+
+export type SearchResults = {
+  img: string;
+  location: string;
+  title: string;
+  description: string;
+  star: string;
+  price: string;
+  total: string;
+};

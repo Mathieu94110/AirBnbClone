@@ -1,8 +1,12 @@
 import Image from "next/image";
 import AirBnbLogo from "../../public/airbnb-logo-0.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faGlobe, faBars } from "@fortawesome/free-solid-svg-icons";
-import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
+import {
+  faSearch,
+  faGlobe,
+  faBars,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
