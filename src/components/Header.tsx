@@ -7,12 +7,11 @@ import {
   faBars,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { useRouter } from "next/dist/client/router";
-import { selectionRange } from "../../typings";
 
 function Header({ placeholder }: { placeholder: string }) {
   const [startDate, setStartDate] = useState(new Date());
@@ -27,7 +26,12 @@ function Header({ placeholder }: { placeholder: string }) {
     key: "selection",
   };
 
-  function handleSelect(ranges: selectionRange) {
+  function handleSelect(ranges: {
+    selection: {
+      startDate: SetStateAction<Date>;
+      endDate: SetStateAction<Date>;
+    };
+  }) {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
   }
