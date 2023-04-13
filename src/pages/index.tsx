@@ -20,7 +20,7 @@ export default function Home({
         <title>AirBnbClone</title>
         <script src="https://kit.fontawesome.com/1002cebf8d.js"></script>
       </Head>
-      <Header />
+      <Header placeholder="Commencer vos recherches" />
       <Banner />
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
         <section className="pt-6">

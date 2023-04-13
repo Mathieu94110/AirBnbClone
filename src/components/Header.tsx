@@ -64,7 +64,7 @@ function Header({ placeholder }: { placeholder: string }) {
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && search()}
-          placeholder={placeholder || "Commencer vos recherches"}
+          placeholder={placeholder}
           className="flex-grow text-sm text-gray-600 pl-5 placeholder-gray-400 outline-none bg-transparent"
         />
         <FontAwesomeIcon
@@ -94,7 +94,6 @@ function Header({ placeholder }: { placeholder: string }) {
           />
         </div>
       </div>
-
       {/* Calender */}
       {searchInput && (
         <div className="flex flex-col col-span-3 mx-auto mt-0">
@@ -106,7 +105,7 @@ function Header({ placeholder }: { placeholder: string }) {
           />
           <div className="flex items-center border-b mb-4">
             <h2 className="text-2xl flex-grow font-semibold">
-              Nombre d'invités
+              Nombre d&apos;invités
             </h2>
 
             <input

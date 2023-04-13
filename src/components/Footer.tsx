@@ -18,8 +18,8 @@ function Footer() {
       </div>
 
       <div className="space-y-4 text-xs text-gray-800">
-        <h5 className="font-bold">BESOIN D'AIDE</h5>
-        <p>Centre d'appel</p>
+        <h5 className="font-bold">BESOIN D&apos;AIDE</h5>
+        <p>Centre d&apos;appel</p>
         <p>Sécurité</p>
         <p>Conditions générales</p>
       </div>

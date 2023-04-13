@@ -4,9 +4,15 @@ import InfoCard from "../components/InfoCard";
 import { format } from "date-fns";
 import Footer from "../components/Footer";
 import { SearchResults } from "../../typings";
-// Client Side Render as we need Global Window Object
+import dynamic from "next/dynamic";
 
-function Search({ searchResults }: { searchResults: SearchResults }) {
+// Client Side Render as we need Global Window Object
+const Map = dynamic(() => import("../components/Map"), {
+  loading: () => "Loading...",
+  ssr: false,
+});
+
+function Search({ searchResults }: { searchResults: SearchResults[] }) {
   const router = useRouter();
   const { location, startDate, endDate, noOfGuests } = router.query;
 
@@ -55,6 +61,9 @@ function Search({ searchResults }: { searchResults: SearchResults }) {
             )}
           </div>
         </section>
+        <section className="hidden xl:inline-flex xl:min-w-[600px]">
+          <Map searchResults={searchResults} />
+        </section>
       </main>
 
       <Footer />
@@ -65,10 +74,12 @@ function Search({ searchResults }: { searchResults: SearchResults }) {
 export default Search;
 
 export async function getServerSideProps() {
-  const searchResults = await fetch("https://www.jsonkeeper.com/b/5C69").then(
+  // const searchResults = await fetch("https://www.jsonkeeper.com/b/WXM9").then(
+  //   (res) => res.json()
+  // );
+  const searchResults = await fetch("https://www.jsonkeeper.com/b/FPCU").then(
     (res) => res.json()
   );
-
   return {
     props: {
       searchResults,

@@ -9,6 +9,17 @@ module.exports = {
       "static3.depositphotos.com",
       "st.depositphotos.com",
       "news.airbnb.com",
+      "a0.muscache.com",
+      "www.expatkings.com",
+      "www.smartertravel.com",
+      "cdn.bisnow.net",
+      "media.cntraveler.com",
+      "static.trip101.com",
+      "image.insider.com",
     ],
+  },
+  env: {
+    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN:
+      process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
   },
 };
