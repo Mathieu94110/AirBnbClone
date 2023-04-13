@@ -16,14 +16,3 @@ export type SearchResults = {
   lat?: string;
   long?: string;
 };
-// export type SearchResultsWithCoordinates = {
-//   img: string;
-//   location: string;
-//   title: string;
-//   description: string;
-//   star: string;
-//   price: string;
-//   total: string;
-//   lat?: string;
-//   long?: string;
-// };

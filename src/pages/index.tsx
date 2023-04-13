@@ -18,7 +18,7 @@ export default function Home({
     <div className="">
       <Head>
         <title>AirBnbClone</title>
-        <script src="https://kit.fontawesome.com/1002cebf8d.js"></script>
+        <script src="https://kit.fontawesome.com/1002cebf8d.js" async />
       </Head>
       <Header placeholder="Commencer vos recherches" />
       <Banner />
