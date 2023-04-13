@@ -16,3 +16,7 @@ export type SearchResults = {
   lat?: string;
   long?: string;
 };
+
+export type selectionRange = {
+  selection: { startDate: Date; endDate: Date; key: string };
+};

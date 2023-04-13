@@ -12,6 +12,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { useRouter } from "next/dist/client/router";
+import { selectionRange } from "../../typings";
 
 function Header({ placeholder }: { placeholder: string }) {
   const [startDate, setStartDate] = useState(new Date());
@@ -20,13 +21,13 @@ function Header({ placeholder }: { placeholder: string }) {
   const [noOfGuests, setNoOfGuests] = useState(1);
   const router = useRouter();
 
-  const selectionRange = {
+  const selectedRange = {
     startDate: startDate,
     endDate: endDate,
     key: "selection",
   };
 
-  function handleSelect(ranges) {
+  function handleSelect(ranges: selectionRange) {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
   }
@@ -100,7 +101,7 @@ function Header({ placeholder }: { placeholder: string }) {
           <DateRangePicker
             minDate={new Date()}
             rangeColors={["#FD5B61"]}
-            ranges={[selectionRange]}
+            ranges={[selectedRange]}
             onChange={handleSelect}
           />
           <div className="flex items-center border-b mb-4">
@@ -112,7 +113,7 @@ function Header({ placeholder }: { placeholder: string }) {
               className="w-12 pl-2 text-lg outline-none text-red-400"
               type="number"
               value={noOfGuests}
-              onChange={(e) => setNoOfGuests(e.target.value)}
+              onChange={(e) => setNoOfGuests(Number(e.target.value))}
             />
           </div>
           <div className="flex">
