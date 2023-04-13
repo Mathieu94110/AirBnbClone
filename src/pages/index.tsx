@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 import Header from "@/components/Header";
 import Banner from "@/components/Banner";
 import SmallCard from "@/components/SmallCard";
@@ -18,8 +19,8 @@ export default function Home({
     <div className="">
       <Head>
         <title>AirBnbClone</title>
-        <script src="https://kit.fontawesome.com/1002cebf8d.js" async />
       </Head>
+      <Script src="https://kit.fontawesome.com/1002cebf8d.js" async />
       <Header placeholder="Commencer vos recherches" />
       <Banner />
       <main className="max-w-7xl mx-auto px-8 sm:px-16">

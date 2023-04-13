@@ -3,21 +3,24 @@ import Header from "../components/Header";
 import InfoCard from "../components/InfoCard";
 import { format } from "date-fns";
 import Footer from "../components/Footer";
-import { SearchResults } from "../../typings";
+import { SearchResultsWithCoordinates } from "../../typings";
 import dynamic from "next/dynamic";
 
 // Client Side Render as we need Global Window Object
 const Map = dynamic(() => import("../components/Map"), {
-  loading: () => "Loading...",
   ssr: false,
 });
 
-function Search({ searchResults }: { searchResults: SearchResults[] }) {
+function Search({
+  searchResults,
+}: {
+  searchResults: SearchResultsWithCoordinates[];
+}) {
   const router = useRouter();
   const { location, startDate, endDate, noOfGuests } = router.query;
 
-  const formattedStartDate = format(new Date(startDate), "dd MMMM yy");
-  const formattedEndDate = format(new Date(endDate), "dd MMMM yy");
+  const formattedStartDate = format(new Date(String(startDate)), "dd MMMM yy");
+  const formattedEndDate = format(new Date(String(endDate)), "dd MMMM yy");
   const range = `${formattedStartDate} - ${formattedEndDate}`;
 
   return (

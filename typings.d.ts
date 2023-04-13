@@ -13,10 +13,9 @@ export type SearchResults = {
   star: string;
   price: string;
   total: string;
-  lat?: string;
-  long?: string;
 };
 
-export type selectionRange = {
-  selection: { startDate: Date; endDate: Date; key: string };
-};
+export interface SearchResultsWithCoordinates extends SearchResults {
+  lat: number;
+  long: number;
+}

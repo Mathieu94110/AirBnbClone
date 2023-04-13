@@ -4,6 +4,7 @@ import ProgressBar from "@badrap/bar-of-progress";
 import "@/styles/globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Head from "next/head";
+import type { AppProps } from "next/app";
 config.autoAddCss = false;
 
 const progress = new ProgressBar({
@@ -16,7 +17,7 @@ Router.events.on("routeChangeStart", progress.start);
 Router.events.on("routeChangeComplete", progress.finish);
 Router.events.on("routeChangeError", progress.finish);
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>

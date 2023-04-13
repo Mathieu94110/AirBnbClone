@@ -1,8 +1,17 @@
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
+import { SearchResults } from "../../typings";
 
-function InfoCard({ img, location, title, description, star, price, total }) {
+function InfoCard({
+  img,
+  location,
+  title,
+  description,
+  star,
+  price,
+  total,
+}: SearchResults) {
   return (
     <div className="flex py-7 px-2 border-b cursor-pointer hover:opacity-80 hover:shadow-lg transition duration-200 ease-out first:border-t">
       <div className="relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0">

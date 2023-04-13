@@ -1,10 +1,16 @@
 import { useState } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import getCenter from "geolib/es/getCenter";
-import { SearchResults } from "../../typings";
+import { SearchResultsWithCoordinates } from "../../typings";
 
-const Map = ({ searchResults }: { searchResults: SearchResults[] }) => {
-  const [selectedLocation, setSelectedLocation] = useState({});
+const Map = ({
+  searchResults,
+}: {
+  searchResults: SearchResultsWithCoordinates[];
+}) => {
+  const [selectedLocation, setSelectedLocation] = useState<
+    Partial<SearchResultsWithCoordinates>
+  >({});
   // Transform coordinates into required array of objects in the correct shape
   const coordinates = searchResults.map((result) => ({
     latitude: result.lat,
@@ -12,7 +18,10 @@ const Map = ({ searchResults }: { searchResults: SearchResults[] }) => {
   }));
 
   // The latitude and longitude of the center of locations coordinates
-  const center = getCenter(coordinates);
+  const center = getCenter(coordinates) as {
+    longitude: number;
+    latitude: number;
+  };
 
   const [viewport, setViewport] = useState({
     width: "100%",
@@ -25,19 +34,14 @@ const Map = ({ searchResults }: { searchResults: SearchResults[] }) => {
   return (
     <ReactMapGL
       mapStyle="mapbox://styles/me94110/clge1kw1r000201n4wmbshjvj"
-      mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN ?? ""}
+      mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
       {...viewport}
-      onViewportChange={(nextViewport) => setViewport(nextViewport)}
+      // onViewportChange={(nextViewport) => setViewport(nextViewport)}
     >
       {searchResults.map((result) => (
         <div key={result.long}>
           {/* The markers for the airbnb properties */}
-          <Marker
-            latitude={result.lat}
-            longitude={result.long}
-            offsetLeft={-20}
-            offsetTop={-10}
-          >
+          <Marker latitude={result.lat} longitude={result.long}>
             <a onClick={() => setSelectedLocation(result)}>
               <p
                 role="img"

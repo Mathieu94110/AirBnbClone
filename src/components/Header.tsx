@@ -7,10 +7,10 @@ import {
   faBars,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { DateRangePicker } from "react-date-range";
+import { DateRangePicker, RangeKeyDict } from "react-date-range";
 import { useRouter } from "next/dist/client/router";
 
 function Header({ placeholder }: { placeholder: string }) {
@@ -26,14 +26,9 @@ function Header({ placeholder }: { placeholder: string }) {
     key: "selection",
   };
 
-  function handleSelect(ranges: {
-    selection: {
-      startDate: SetStateAction<Date>;
-      endDate: SetStateAction<Date>;
-    };
-  }) {
-    setStartDate(ranges.selection.startDate);
-    setEndDate(ranges.selection.endDate);
+  function handleSelect(ranges: RangeKeyDict) {
+    setStartDate(ranges.selection.startDate!);
+    setEndDate(ranges.selection.endDate!);
   }
 
   function resetInput() {
@@ -56,21 +51,21 @@ function Header({ placeholder }: { placeholder: string }) {
     setSearchInput("");
   }
   return (
-    <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md py-5 px-5 md:px-10">
+    <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md py-2 px-2 sm:py-5  sm:px-5 md:px-10 max-sm:flex-row">
       <div
         onClick={() => router.push("/")}
-        className="relative flex items-center h-10 my-auto cursor-pointer"
+        className="relative flex items-center h-10 my-auto cursor-pointer "
       >
-        <Image height="100" src={AirBnbLogo} alt="airbnb logo" />
+        <Image height="80" src={AirBnbLogo} alt="airbnb logo" />
       </div>
       {/* Search */}
-      <div className="flex items-center md:border-2 rounded-full md:shadow-sm py-2">
+      <div className="flex items-center md:border-2 rounded-full md:shadow-sm p-2">
         <input
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && search()}
           placeholder={placeholder}
-          className="flex-grow text-sm text-gray-600 pl-5 placeholder-gray-400 outline-none bg-transparent"
+          className="flex-grow text-sm text-gray-600 pl-5 placeholder-gray-400 outline-none bg-transparent max-sm:pl-0 max-md:mr-2"
         />
         <FontAwesomeIcon
           icon={faSearch}
@@ -78,15 +73,15 @@ function Header({ placeholder }: { placeholder: string }) {
           className="h-8 hidden md:inline-flex p-2 mx-auto cursor-pointer md:mx-2 bg-red-400 rounded-full text-white"
         />
       </div>
-      <div className="flex items-center text-gray-500 justify-end space-x-4">
-        <p className="cursor-pointer hidden md:inline">Deviens hote</p>
+      <div className="hidden flex items-center text-gray-500 justify-end space-x-4 sm:inline-flex max-sm:col-span-2">
+        <p className="cursor-pointer hidden lg:inline">Deviens hote</p>
 
         <FontAwesomeIcon
           icon={faGlobe}
           style={{ fontSize: 30 }}
-          className="h-6 cursor-pointer hidden sm:inline"
+          className=" h-6 cursor-pointer hidden inline"
         />
-        <div className="flex items-center space-x-2 border-2 p-2 rounded-full">
+        <div className=" items-center space-x-2 border-2 p-2 rounded-full inline-flex">
           <FontAwesomeIcon
             icon={faBars}
             style={{ fontSize: 30 }}
