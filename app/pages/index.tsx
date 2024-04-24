@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Script from "next/script";
-import Header from "@/components/Header";
+import Header from "@/components/navbar/NavBar";
 import Banner from "@/components/Banner";
 import SmallCard from "@/components/SmallCard";
 import { AroundCards } from "../../typings";

@@ -1,4 +1,7 @@
 module.exports = {
+  experimental: {
+    appDir: true,
+  },
   images: {
     domains: [
       "static8.depositphotos.com",

@@ -1,5 +1,5 @@
 import { useRouter } from "next/dist/client/router";
-import Header from "../components/Header";
+import Header from "../components/navbar/NavBar";
 import InfoCard from "../components/InfoCard";
 import { format } from "date-fns";
 import Footer from "../components/Footer";

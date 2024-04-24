@@ -1,5 +1,6 @@
+"use client"
+
 import Image from "next/image";
-import AirBnbLogo from "../../public/airbnb-logo-0.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -11,9 +12,10 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker, RangeKeyDict } from "react-date-range";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/navigation";
+import Logo from "./Logo";
 
-function Header({ placeholder }: { placeholder: string }) {
+function NavBar({ placeholder }: { placeholder: string }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [searchInput, setSearchInput] = useState("");
@@ -56,7 +58,8 @@ function Header({ placeholder }: { placeholder: string }) {
         onClick={() => router.push("/")}
         className="relative flex items-center h-10 my-auto cursor-pointer "
       >
-        <Image height="80" src={AirBnbLogo} alt="airbnb logo" />
+        {/* <Image height="80" src={AirBnbLogo} alt="airbnb logo" /> */}
+        <Logo />
       </div>
       {/* Search */}
       <div className="flex items-center md:border-2 rounded-full md:shadow-sm p-2">
@@ -128,4 +131,4 @@ function Header({ placeholder }: { placeholder: string }) {
     </header>
   );
 }
-export default Header;
+export default NavBar;
