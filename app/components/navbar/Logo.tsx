@@ -9,10 +9,10 @@ const Logo = () => {
     return (
         <Image
             alt='AirBnb logo'
-            className="hidden mb:block cursor-pointer"
-            height='100'
-            width='200'
-            src='/public/airbnb-logo.png'
+            className="hidden md:block cursor-pointer"
+            width={100}
+            height={50}
+            src='/images/airbnb-logo.png'
         />
     )
 }

@@ -8,21 +8,16 @@ import MediumCard from "@/components/MediumCard";
 import LargeCard from "@/components/LargeCard";
 import Footer from "@/components/Footer";
 
-export default function Home({
-  aroundOffers,
-  cardsData,
-}: {
-  aroundOffers: AroundCards[] | undefined;
-  cardsData: AroundCards[] | undefined;
-}) {
+export default async function Home() {
+  4
+  const aroundOffers = await fetch("https://www.jsonkeeper.com/b/O34X").then(
+    (res) => res.json()
+  );
+  const cardsData = await fetch("https://www.jsonkeeper.com/b/CYIT").then(
+    (res) => res.json()
+  );
   return (
-    <div className="">
-      <Head>
-        <title>AirBnbClone</title>
-      </Head>
-      <Script src="https://kit.fontawesome.com/1002cebf8d.js" async />
-      <Header placeholder="Commencer vos recherches" />
-      <Banner />
+    <div >
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
         <section className="pt-6">
           <h2 className="text-4xl font-semibold pb-5">Autour de vous</h2>
@@ -59,17 +54,17 @@ export default function Home({
   );
 }
 
-export async function getStaticProps() {
-  const aroundOffers = await fetch("https://www.jsonkeeper.com/b/O34X").then(
-    (res) => res.json()
-  );
-  const cardsData = await fetch("https://www.jsonkeeper.com/b/CYIT").then(
-    (res) => res.json()
-  );
-  return {
-    props: {
-      aroundOffers,
-      cardsData,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const aroundOffers = await fetch("https://www.jsonkeeper.com/b/O34X").then(
+//     (res) => res.json()
+//   );
+//   const cardsData = await fetch("https://www.jsonkeeper.com/b/CYIT").then(
+//     (res) => res.json()
+//   );
+//   return {
+//     props: {
+//       aroundOffers,
+//       cardsData,
+//     },
+//   };
+// }
