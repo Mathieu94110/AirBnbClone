@@ -7,9 +7,9 @@ import { AroundCards } from "../../typings";
 import MediumCard from "@/components/MediumCard";
 import LargeCard from "@/components/LargeCard";
 import Footer from "@/components/Footer";
+import { memo } from "react";
 
-export default async function Home() {
-  4
+const Home = async () => {
   const aroundOffers = await fetch("https://www.jsonkeeper.com/b/O34X").then(
     (res) => res.json()
   );
@@ -18,7 +18,7 @@ export default async function Home() {
   );
   return (
     <div >
-      <main className="max-w-7xl mx-auto px-8 sm:px-16">
+      <main className={`max-w-7xl mx-auto px-8 sm:px-16 'mt-navheight`}>
         <section className="pt-6">
           <h2 className="text-4xl font-semibold pb-5">Autour de vous</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -54,17 +54,4 @@ export default async function Home() {
   );
 }
 
-// export async function getStaticProps() {
-//   const aroundOffers = await fetch("https://www.jsonkeeper.com/b/O34X").then(
-//     (res) => res.json()
-//   );
-//   const cardsData = await fetch("https://www.jsonkeeper.com/b/CYIT").then(
-//     (res) => res.json()
-//   );
-//   return {
-//     props: {
-//       aroundOffers,
-//       cardsData,
-//     },
-//   };
-// }
+export default memo(Home)

@@ -1,22 +1,24 @@
-import NavBar from "./components/navbar/NavBar";
 import { Nunito } from "next/font/google"
 import './globals.css';
+import NavBarProvider from "./components/NavBarProvider";
 
 const font = Nunito({
     subsets: ["latin"]
 })
 
-export default function RootLayout({
+const RootLayout = ({
     children,
 }: {
     children: React.ReactNode
-}) {
+}) => {
     return (
         <html lang="en">
             <body className={font.className}>
-                <NavBar placeholder="Commencer vos recherches" />
-                {children}
+
+                <NavBarProvider>{children}</NavBarProvider>
             </body>
         </html>
     )
 }
+
+export default RootLayout;

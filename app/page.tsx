@@ -1,14 +1,11 @@
-import React, { Suspense } from 'react'
-import Home from './pages'
+import Home from './pages';
+import NavBar from './components/navbar/NavBar';
 
-async function Page() {
-    const home: JSX.Element = await Home()
+const Page = () => {
     return (
         <>
-            <Suspense fallback={<>Loading...</>}>
-                {home}
-            </Suspense>
-
+            <NavBar placeholder="Commencer vos recherches" />
+            <Home />
         </>
     )
 }

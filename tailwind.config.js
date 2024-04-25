@@ -7,6 +7,18 @@ module.exports = {
   ],
   theme: {
     extend: {
+      height: {
+        defaultnavheight: '168px',
+        navheight: "82px",
+      },
+      colors: {
+        primary: "#222222",
+        secondary: "#FF385C",
+        tertiary: "#F7F7F7",
+      },
+      margin: {
+        navheight: "82px"
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
