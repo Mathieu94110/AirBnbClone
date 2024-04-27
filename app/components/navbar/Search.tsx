@@ -3,7 +3,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-function Search({ isDefaultSearchBar }: { isDefaultSearchBar: boolean }) {
+const Search = ({ isDefaultSearchBar }: { isDefaultSearchBar: boolean }) => {
     function advancedSearchBar() {
         return (
             <div

@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useCallback, useState } from 'react'
 import MenuItem from './MenuItem';
 
-export default function UserMenu() {
+const UserMenu = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const toggleOpen = useCallback(() => {
+    const toggleOpen = (() => {
         setIsOpen((value) => !value)
     })
     return (
@@ -52,3 +52,4 @@ export default function UserMenu() {
 
     )
 }
+export default UserMenu;

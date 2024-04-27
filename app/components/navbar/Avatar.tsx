@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Avatar() {
+const Avatar = () => {
     return (
         <div>
 

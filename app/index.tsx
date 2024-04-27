@@ -8,13 +8,13 @@ import MediumCard from "@/components/MediumCard";
 import LargeCard from "@/components/LargeCard";
 import Footer from "@/components/Footer";
 
-export default function Home({
+const Home = ({
     aroundOffers,
     cardsData,
 }: {
     aroundOffers: AroundCards[] | undefined;
     cardsData: AroundCards[] | undefined;
-}) {
+}) => {
     return (
         <div className="">
             <Head>
@@ -73,3 +73,5 @@ export async function getStaticProps() {
         },
     };
 }
+
+export default Home;
