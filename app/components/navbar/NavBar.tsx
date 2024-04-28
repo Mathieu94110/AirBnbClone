@@ -19,6 +19,7 @@ import UserMenu from "./UserMenu";
 import Container from "../Container";
 import DefaultSearch from "./DefaultSearch";
 import { useSetNavBar } from "@/hooks/useSetNavbar";
+import Categories from "../Categories";
 
 function NavBar({ placeholder }: { placeholder: string }) {
   const [startDate, setStartDate] = useState(new Date());
@@ -140,7 +141,7 @@ function NavBar({ placeholder }: { placeholder: string }) {
         }
       </div>
     </Container>
-
+    <Categories />
   </div>
 
 
