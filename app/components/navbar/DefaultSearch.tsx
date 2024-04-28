@@ -25,7 +25,7 @@ const DefaultSearch = () => {
                     <div className='font-normal'>Ajouter des voyageurs</div>
                 </div>
 
-                <div className='px-2 py-1 bg-secondary rounded-full text-white mr-2'>
+                <div className='px-2 py-1 bg-secondary rounded-full text-white mx-2'>
                     <FontAwesomeIcon
                         icon={faSearch}
                         style={{ fontSize: 16 }}

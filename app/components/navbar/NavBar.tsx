@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
-import Container from "../Container";
+// import Container from "../Container";
 import DefaultSearch from "./DefaultSearch";
 import { useSetNavBar } from "@/hooks/useSetNavbar";
 import Categories from "../Categories";
@@ -77,9 +77,9 @@ function NavBar({ placeholder }: { placeholder: string }) {
     setSearchInput("");
   }
 
-  return <div className={`${isDefaultSearchBar ? 'h-defaultnavheight ' : 'h-navheight '}bg-white fixed w-full shadow-sm py-4 border-b-[1px] top-0 z-10`}>
-    <Container>
-      <div className=" flex flex-row items-center justify-between gap-3 md:gap-0">
+  return <>
+    <div className="max-w-[2520px] mx-auto xl:px-20 md:px-8 px-2 shadow-sm border-b-[1px] py-4">
+      <div className=" flex flex-row items-center justify-center gap-3 md:gap-0 md:justify-between">
         <div
           onClick={() => router.push("/")}
           className="flex flex-row items-center justify-between gap-3 md:gap-0"
@@ -140,9 +140,9 @@ function NavBar({ placeholder }: { placeholder: string }) {
           )
         }
       </div>
-    </Container>
+    </div>
     <Categories />
-  </div>
+  </>
 
 
 }

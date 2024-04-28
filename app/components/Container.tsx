@@ -1,16 +1,23 @@
 "use client";
 
+import { useSetNavBar } from "@/hooks/useSetNavBar";
 interface ContainerProps {
-    children: React.ReactNode
+    children: React.ReactNode,
+    type?: 'navbar' | 'page'
 }
 
 const Container: React.FC<ContainerProps> = ({
-    children
+    children,
+    type
 }) => {
+    const {
+        isDefaultSearchBar
+    } = useSetNavBar();
     return (
-        <div className="max-w-[2520px] mx-auto xl:px-20 md:px-8 px-2">
+        <div className={`${isDefaultSearchBar ? type === 'navbar' ? 'h-defaultnavheight ' : 'mt-[100px] ' : ' '}
+         ${!isDefaultSearchBar ? type === 'navbar' ? 'h-navheight fixed ' : 'mt-[220px] ' : ' '} bg-white w-full top-0 z-10`} >
             {children}
-        </div>
+        </div >
     )
 }
 export default Container;
