@@ -2,7 +2,9 @@ import NavBar from './components/navbar/NavBar';
 import Container from './components/Container';
 import { Nunito } from "next/font/google"
 import './globals.css';
-import Modal from './components/modals/Modal';
+import ClientOnly from './components/ClientOnly';
+import RegisterModal from './components/modals/RegisterModal';
+import ToastProvider from './providers/ToastProvider';
 
 const font = Nunito({
     subsets: ["latin"]
@@ -18,8 +20,12 @@ const RootLayout = ({
             <body className={font.className}>
                 {/*Container below is user in order to set navbar height and home margin top depending on scroll*/}
                 <Container type='navbar'>
-                    <Modal actionLabel='Envoyer' secondaryActionLabel='Annuler' title="Hello" isOpen />
-                    <NavBar placeholder="Commencer vos recherches" />
+                    <ClientOnly>
+                        <ToastProvider />
+                        <RegisterModal />
+                        <NavBar placeholder="Commencer vos recherches" />
+                    </ClientOnly>
+
                 </Container>
                 {children}
             </body>

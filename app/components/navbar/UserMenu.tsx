@@ -4,9 +4,11 @@ import { faBars, faGlobe, faL, faUserCircle } from '@fortawesome/free-solid-svg-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useCallback, useState } from 'react'
 import MenuItem from './MenuItem';
+import useRegisterModal from '@/hooks/useRegisterModal';
 
 const UserMenu = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const registerModal = useRegisterModal()
 
     const toggleOpen = (() => {
         setIsOpen((value) => !value)
@@ -38,10 +40,10 @@ const UserMenu = () => {
                         <>
                             <MenuItem
                                 onClick={() => { }}
-                                label='Connection'
+                                label='Connexion'
                             />
                             <MenuItem
-                                onClick={() => { }}
+                                onClick={registerModal.onOpen}
                                 label='Inscription'
                             />
                         </>
