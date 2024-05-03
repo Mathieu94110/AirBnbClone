@@ -5,11 +5,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useCallback, useState } from 'react'
 import MenuItem from './MenuItem';
 import useRegisterModal from '@/hooks/useRegisterModal';
+import useLoginModal from '@/hooks/useLoginModal';
+import { User } from "@prisma/client"
+import { signOut } from 'next-auth/react';
 
-const UserMenu = () => {
+interface UserMenuProps {
+    currentUser?: User | null
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const registerModal = useRegisterModal()
-
+    const loginModal = useLoginModal();
     const toggleOpen = (() => {
         setIsOpen((value) => !value)
     })
@@ -37,16 +44,38 @@ const UserMenu = () => {
             {isOpen && (
                 <div className='absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm'>
                     <div className="flex flex-col cursor-pointer">
-                        <>
-                            <MenuItem
-                                onClick={() => { }}
-                                label='Connexion'
-                            />
-                            <MenuItem
-                                onClick={registerModal.onOpen}
-                                label='Inscription'
-                            />
-                        </>
+                        {currentUser ? (
+                            <>
+                                <MenuItem
+                                    onClick={loginModal.onOpen}
+                                    label='Mes séjours'
+                                />
+                                <MenuItem
+                                    onClick={registerModal.onOpen}
+                                    label='Mes favoris'
+                                />
+                                <MenuItem
+                                    onClick={registerModal.onOpen}
+                                    label='Mes r&servations'
+                                />
+                                <MenuItem
+                                    onClick={() => signOut()}
+                                    label='Déconnexion'
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <MenuItem
+                                    onClick={loginModal.onOpen}
+                                    label='Connexion'
+                                />
+                                <MenuItem
+                                    onClick={registerModal.onOpen}
+                                    label='Inscription'
+                                />
+                            </>
+                        )}
+
                     </div>
                 </div>
             )}

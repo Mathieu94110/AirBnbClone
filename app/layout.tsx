@@ -5,16 +5,20 @@ import './globals.css';
 import ClientOnly from './components/ClientOnly';
 import RegisterModal from './components/modals/RegisterModal';
 import ToastProvider from './providers/ToastProvider';
+import LoginModal from './components/modals/LoginModal';
+import getCurrentUser from './actions/getCurrentUser';
 
 const font = Nunito({
     subsets: ["latin"]
 })
 
-const RootLayout = ({
+const RootLayout = async ({
     children,
 }: {
     children: React.ReactNode
 }) => {
+    const currentUser = await getCurrentUser();
+
     return (
         <html lang="en">
             <body className={font.className}>
@@ -22,8 +26,9 @@ const RootLayout = ({
                 <Container type='navbar'>
                     <ClientOnly>
                         <ToastProvider />
+                        <LoginModal />
                         <RegisterModal />
-                        <NavBar placeholder="Commencer vos recherches" />
+                        <NavBar placeholder="Commencer vos recherches" currentUser={currentUser} />
                     </ClientOnly>
 
                 </Container>

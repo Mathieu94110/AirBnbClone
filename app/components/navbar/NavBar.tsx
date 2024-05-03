@@ -16,12 +16,17 @@ import { useRouter } from "next/navigation";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
-// import Container from "../Container";
 import DefaultSearch from "./DefaultSearch";
 import { useSetNavBar } from "@/hooks/useSetNavbar";
 import Categories from "../Categories";
+import { User } from "@prisma/client"
 
-function NavBar({ placeholder }: { placeholder: string }) {
+interface NavBarProps {
+  currentUser?: User | null,
+  placeholder: string
+}
+
+function NavBar({ placeholder, currentUser }: NavBarProps) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [searchInput, setSearchInput] = useState("");
@@ -105,7 +110,7 @@ function NavBar({ placeholder }: { placeholder: string }) {
     />
   </div> */}
         <div className="hidden flex items-center text-gray-500 justify-end space-x-4 sm:inline-flex max-sm:col-span-2">
-          <UserMenu />
+          <UserMenu currentUser={currentUser} />
         </div>
         {
           searchInput && (
