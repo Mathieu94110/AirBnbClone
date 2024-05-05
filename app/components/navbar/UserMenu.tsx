@@ -8,6 +8,8 @@ import useRegisterModal from '@/hooks/useRegisterModal';
 import useLoginModal from '@/hooks/useLoginModal';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/types';
+import RentModal from '../modals/RentModal';
+import useRentModal from '@/hooks/useRentModal';
 
 interface UserMenuProps {
     currentUser?: SafeUser | null
@@ -17,13 +19,21 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const registerModal = useRegisterModal()
     const loginModal = useLoginModal();
+    const rentModal = useRentModal();
     const toggleOpen = (() => {
         setIsOpen((value) => !value)
     })
+    const onRent = useCallback(() => {
+        if (!currentUser) {
+            return loginModal.onOpen()
+        }
+        rentModal.onOpen()
+    }, [currentUser, loginModal, rentModal])
+
     return (
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
-                <div className='hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer'>
+                <div onClick={onRent} className='hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer'>
                     Mettre son logement sur Airbnb
                 </div>
                 <FontAwesomeIcon
@@ -59,8 +69,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                                     label='Mes r&servations'
                                 />
                                 <MenuItem
-                                    onClick={() => signOut()}
-                                    label='Déconnexion'
+                                    onClick={registerModal.onOpen}
+                                    label='Mes logements'
+                                />
+                                <MenuItem
+                                    onClick={rentModal.onOpen}
+                                    label='Mettre mon logement sur Airbnb'
                                 />
                             </>
                         ) : (
