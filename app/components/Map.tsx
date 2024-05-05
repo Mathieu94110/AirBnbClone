@@ -36,7 +36,7 @@ const Map = ({
       mapStyle="mapbox://styles/me94110/clge1kw1r000201n4wmbshjvj"
       mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
       {...viewport}
-      // onViewportChange={(nextViewport) => setViewport(nextViewport)}
+    // onViewportChange={(nextViewport) => setViewport(nextViewport)}
     >
       {searchResults.map((result) => (
         <div key={result.long}>
