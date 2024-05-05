@@ -4,6 +4,7 @@ import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import Modal from "./Modal";
 import Input from "../inputs/Input";
@@ -13,8 +14,11 @@ import Button from "../Button";
 import { signIn } from "next-auth/react";
 
 
+
 const RegisterModal = () => {
-    const RegisterModal = useRegisterModal();
+    const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
+
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>({ defaultValues: { name: '', email: '', password: '' } });
@@ -28,7 +32,7 @@ const RegisterModal = () => {
             },
             body: JSON.stringify({ keyword: data }),
         })
-            .then(() => RegisterModal.onClose())
+            .then(() => registerModal.onClose())
             .catch((error) => {
                 toast.error('Quelque chose c\est mal passé !')
             }).finally(() => {
@@ -36,6 +40,12 @@ const RegisterModal = () => {
             });
 
     }
+
+    const toggle = useCallback(() => {
+        registerModal.onClose();
+        loginModal.onOpen()
+    }, [loginModal, registerModal])
+
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <Heading
@@ -51,16 +61,13 @@ const RegisterModal = () => {
     const footerContent = (
         <div className="flex flex-col gap-4 mt-3">
             <hr />
-            <Button outline label='Continuer avec Google' icon={FcGoogle} onClick={() => signIn("google")} />
             <Button outline label='Continuer avec Github' icon={AiFillGithub} onClick={() => signIn("github")} />
             <div className="text-neutral-500 text-center mt-4 font-light">
                 <div className="flex flex-row items-center justify-center gap-2">
                     <div>
                         Vous avez déjà un compte ?
                     </div>
-                    <div onClick={
-                        RegisterModal.onClose
-                    } className="text-neutral-800 cursor-pointer hover:underline">
+                    <div onClick={toggle} className="text-neutral-800 cursor-pointer hover:underline">
                         Se connecter
                     </div>
                 </div>
@@ -68,7 +75,7 @@ const RegisterModal = () => {
         </div>
     )
     return (
-        <Modal disabled={isLoading} isOpen={RegisterModal.isOpen} title='Inscription' actionLabel="Continuer" onClose={RegisterModal.onClose} onSubmit={handleSubmit(onSubmit)} body={bodyContent} footer={footerContent} />
+        <Modal disabled={isLoading} isOpen={registerModal.isOpen} title='Inscription' actionLabel="Continuer" onClose={toggle} onSubmit={handleSubmit(onSubmit)} body={bodyContent} footer={footerContent} />
     )
 }
 
