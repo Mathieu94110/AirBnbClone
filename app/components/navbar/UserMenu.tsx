@@ -66,7 +66,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                                 />
                                 <MenuItem
                                     onClick={registerModal.onOpen}
-                                    label='Mes r&servations'
+                                    label='Mes réservations'
                                 />
                                 <MenuItem
                                     onClick={registerModal.onOpen}

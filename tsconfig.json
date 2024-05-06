@@ -18,10 +18,23 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": "app/",
     "paths": {
-      "@/*": [
-        "./app/*"
-      ]
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "@/types": [
+        "types"
+      ],
+      "@/hooks/*": [
+        "hooks/*"
+      ],
+      "@/libs/*": [
+        "libs/*"
+      ],
     },
     "plugins": [
       {
