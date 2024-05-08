@@ -19,10 +19,14 @@ module.exports = {
       "media.cntraveler.com",
       "static.trip101.com",
       "image.insider.com",
+      "res.cloudinary.com"
     ],
   },
   env: {
     NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN:
       process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME:
+      process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
   },
+
 };

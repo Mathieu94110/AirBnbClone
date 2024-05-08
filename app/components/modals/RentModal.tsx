@@ -9,6 +9,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import CountrySelect from '../inputs/CountrySelect';
 import dynamic from 'next/dynamic';
 import Counter from '../inputs/Counter';
+import ImageUpload from '../inputs/ImageUpload';
 
 enum STEPS {
     CATEGORY = 0,
@@ -36,6 +37,7 @@ const RentModal = () => {
     const guestCount = watch('guestCount');
     const roomCount = watch('roomCount');
     const bathroomCount = watch('bathroomCount');
+    const imageSrc = watch('imageSrc');
 
     const RentMap = useMemo(() => dynamic(() => import('../../components/RentMap'), {
         ssr: false
@@ -73,7 +75,7 @@ const RentModal = () => {
             <Heading title='Lequel de ces choix correspond le mieux à votre logement ?' subtitle='Choisissez une catégorie' />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
                 {categories.map((item) => (
-                    <div className="col-span-1">
+                    <div className="col-span-1" key={item.label}>
                         <CategoryInput onClick={(category) => setCustomValue('category', category)} selected={category === item.label} label={item.label} icon={item.icon} />
                     </div>
                 ))}
@@ -107,6 +109,19 @@ const RentModal = () => {
                 <Counter title="Nombre d'invités" subtitle="Combien d'invités ?" value={guestCount} onChange={(value) => setCustomValue('guestCount', value)} />
                 <Counter title="Chambres" subtitle="Combien de chambres ?" value={roomCount} onChange={(value) => setCustomValue('roomCount', value)} />
                 <Counter title="Salles de bain" subtitle="Combien de salle de bain ?" value={bathroomCount} onChange={(value) => setCustomValue('bathroomCount', value)} />
+            </div>
+        )
+    }
+
+
+    if (step === STEPS.IMAGES) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Ajouter une photo du logement ?"
+                    subtitle='Montrer à quoi ressemble votre logement!'
+                />
+                <ImageUpload value={imageSrc} onChange={(value) => setCustomValue('imageSrc', value)} />
             </div>
         )
     }
