@@ -33,8 +33,8 @@ const RegisterModal = () => {
             body: JSON.stringify({ keyword: data }),
         })
             .then(() => registerModal.onClose())
-            .catch((error) => {
-                toast.error('Quelque chose c\est mal passé !')
+            .catch(() => {
+                toast.error("Quelque chose c'est mal passé !")
             }).finally(() => {
                 setIsLoading(false)
             });

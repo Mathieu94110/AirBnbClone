@@ -5,11 +5,14 @@ import useRentModal from '@/hooks/useRentModal';
 import Heading from '../Heading';
 import { categories } from '../Categories';
 import CategoryInput from '../inputs/CategoryInput';
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import CountrySelect from '../inputs/CountrySelect';
 import dynamic from 'next/dynamic';
 import Counter from '../inputs/Counter';
 import ImageUpload from '../inputs/ImageUpload';
+import Input from '../inputs/Input';
+import { useRouter } from 'next/navigation';
+import toast from "react-hot-toast";
 
 enum STEPS {
     CATEGORY = 0,
@@ -21,8 +24,10 @@ enum STEPS {
 }
 
 const RentModal = () => {
+    const router = useRouter();
     const rentModal = useRentModal();
     const [step, setStep] = useState(STEPS.CATEGORY);
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const { register, handleSubmit, setValue, watch, formState: { errors }, reset
     } = useForm<FieldValues>({
@@ -53,6 +58,26 @@ const RentModal = () => {
 
     const onNext = () => {
         setStep((value) => value + 1)
+    }
+
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        if (step !== STEPS.PRICE) {
+            return onNext();
+        }
+        setIsLoading(true);
+        fetch('/api/listings', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(() => { toast.success('Annonce créée'); router.refresh(); reset(); setStep(STEPS.CATEGORY); rentModal.onClose() })
+            .catch(() => {
+                toast.error("Quelque chose c'est mal passé !")
+            }).finally(() => {
+                setIsLoading(false)
+            });
     }
 
     const actionLabel = useMemo(() => {
@@ -88,7 +113,7 @@ const RentModal = () => {
             <div className="flex flex-col gap-8">
                 <Heading
                     title="Ou se situe le logement ?"
-                    subtitle='Aider des invités à vous trouver!'
+                    subtitle='Aider des invités à vous trouver !'
                 />
                 <CountrySelect
                     value={location}
@@ -119,9 +144,58 @@ const RentModal = () => {
             <div className="flex flex-col gap-8">
                 <Heading
                     title="Ajouter une photo du logement ?"
-                    subtitle='Montrer à quoi ressemble votre logement!'
+                    subtitle='Montrer à quoi ressemble votre logement !'
                 />
                 <ImageUpload value={imageSrc} onChange={(value) => setCustomValue('imageSrc', value)} />
+            </div>
+        )
+    }
+
+    if (step === STEPS.DESCRIPTION) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Comment décririez-vous votre logement ?"
+                    subtitle="De la meilleure des manières !"
+                />
+                <Input
+                    id="title"
+                    label="Titre"
+                    disabled={isLoading}
+                    register={register}
+                    errors={errors}
+                    required
+                />
+                <hr />
+                <Input
+                    id="description"
+                    label="Description"
+                    disabled={isLoading}
+                    register={register}
+                    errors={errors}
+                    required
+                />
+            </div>
+        )
+    }
+    if (step === STEPS.PRICE) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Maintenant indiquer votre prix !"
+                    subtitle='A combien se facture la nuit ?'
+                />
+
+                <Input
+                    id="price"
+                    label="Prix"
+                    formatPrice
+                    type="number"
+                    disabled={isLoading}
+                    register={register}
+                    errors={errors}
+                    required
+                />
             </div>
         )
     }
@@ -130,7 +204,7 @@ const RentModal = () => {
         <Modal
             title="Mettre mon logement sur Airbnb"
             onClose={rentModal.onClose}
-            onSubmit={onNext}
+            onSubmit={handleSubmit(onSubmit)}
             isOpen={rentModal.isOpen}
             actionLabel='Confirmer'
             secondaryActionLabel={secondaryActionLabel}
