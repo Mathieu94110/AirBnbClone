@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
-import { SearchResults } from "../../typings";
+import { SearchResults } from "@/types";
 
 function InfoCard({
   img,

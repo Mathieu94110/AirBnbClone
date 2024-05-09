@@ -1,13 +1,13 @@
 import { useRouter } from "next/dist/client/router";
-import Header from "../components/navbar/NavBar";
-import InfoCard from "../components/InfoCard";
+import Header from "@/components/navbar/NavBar";
+import InfoCard from "@/components/InfoCard";
 import { format } from "date-fns";
-import Footer from "../components/Footer";
-import { SearchResultsWithCoordinates } from "../../typings";
+import Footer from "@/components/Footer";
+import { SearchResultsWithCoordinates } from "../typings";
 import dynamic from "next/dynamic";
 
 // Client Side Render as we need Global Window Object
-const Map = dynamic(() => import("../components/Map"), {
+const Map = dynamic(() => import("@/components/Map"), {
   ssr: false,
 });
 

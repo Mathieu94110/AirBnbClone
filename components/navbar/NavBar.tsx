@@ -17,7 +17,7 @@ import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 import DefaultSearch from "./DefaultSearch";
-import { useSetNavBar } from "@/hooks/useSetNavbar";
+import { useSetNavBar } from "@/hooks/useSetNavBar";
 import Categories from "../Categories";
 import { SafeUser } from "@/types";
 

@@ -21,19 +21,28 @@
     "baseUrl": "app/",
     "paths": {
       "@/components/*": [
-        "components/*"
+        "../components/*"
       ],
       "@/styles/*": [
-        "styles/*"
+        "../styles/*"
       ],
       "@/types": [
-        "types"
+        "../types"
       ],
       "@/hooks/*": [
-        "hooks/*"
+        "../hooks/*"
       ],
       "@/libs/*": [
-        "libs/*"
+        "../libs/*"
+      ],
+      "@/providers/*": [
+        "../providers/*"
+      ],
+      "@/prisma/*": [
+        "../prisma/*"
+      ],
+      "@/public/*": [
+        "../public/*"
       ],
     },
     "plugins": [

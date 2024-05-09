@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import getCenter from "geolib/es/getCenter";
-import { SearchResultsWithCoordinates } from "../../typings";
+import { SearchResultsWithCoordinates } from "@/types";
 
 const Map = ({
   searchResults,

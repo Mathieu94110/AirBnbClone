@@ -19,6 +19,5 @@ export function useSetNavBar() {
 
     return {
         isDefaultSearchBar,
-        // setIsDefaultSearchBar,
     };
 }

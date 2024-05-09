@@ -1,13 +1,13 @@
-import NavBar from './components/navbar/NavBar';
-import Container from './components/Container';
+import NavBar from '@/components/navbar/NavBar';
+import Container from '@/components/Container';
 import { Nunito } from "next/font/google"
-import './globals.css';
-import ClientOnly from './components/ClientOnly';
-import RegisterModal from './components/modals/RegisterModal';
-import ToastProvider from './providers/ToastProvider';
-import LoginModal from './components/modals/LoginModal';
+import ClientOnly from '@/components/ClientOnly';
+import RegisterModal from '@/components/modals/RegisterModal';
+import ToastProvider from '@/providers/ToastProvider';
+import LoginModal from '@/components/modals/LoginModal';
 import getCurrentUser from './actions/getCurrentUser';
-import RentModal from './components/modals/RentModal';
+import RentModal from '@/components/modals/RentModal';
+import './globals.css';
 
 const font = Nunito({
     subsets: ["latin"]

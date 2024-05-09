@@ -3,13 +3,13 @@ import Script from "next/script";
 import Header from "@/components/navbar/NavBar";
 import Banner from "@/components/Banner";
 import SmallCard from "@/components/SmallCard";
-import { AroundCards } from "../../typings";
+import { AroundCards } from "../typings";
 import MediumCard from "@/components/MediumCard";
 import LargeCard from "@/components/LargeCard";
 import Footer from "@/components/Footer";
 import { memo } from "react";
 
-const Home = async () => {
+const HomeCards = async () => {
   const aroundOffers = await fetch("https://www.jsonkeeper.com/b/O34X").then(
     (res) => res.json()
   );
@@ -54,4 +54,4 @@ const Home = async () => {
   );
 }
 
-export default memo(Home)
+export default memo(HomeCards)

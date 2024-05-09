@@ -1,16 +1,16 @@
-import Home from './pages';
-import Container from './components/Container';
+import HomeCards from '@/components/HomeCards';
+import Container from '@/components/Container';
 
-const Page = () => {
+const Home = () => {
     return (
         <>
             {/*Container below is user in order to set navbar height and home margin top depending on scroll*/}
             <Container type='page'>
-                <Home />
+                <HomeCards />
             </Container>
 
         </>
     )
 }
 
-export default Page
+export default Home
