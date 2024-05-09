@@ -32,7 +32,6 @@ const RootLayout = async ({
                         <RentModal />
                         <NavBar placeholder="Commencer vos recherches" currentUser={currentUser} />
                     </ClientOnly>
-
                 </Container>
                 {children}
             </body>
