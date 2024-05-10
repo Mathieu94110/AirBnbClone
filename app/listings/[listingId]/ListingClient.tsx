@@ -5,8 +5,7 @@ import Container from "@/components/Container";
 import ListingHead from "@/components/listings/ListingHead";
 import ListingInfo from "@/components/listings/ListingInfo";
 import useLoginModal from "@/hooks/useLoginModal";
-import { SafeListing, SafeUser } from "@/types";
-import { Reservation } from "@prisma/client"
+import { SafeListing, SafeReservation, SafeUser } from "@/types";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
@@ -20,7 +19,7 @@ const initialDateRange = {
 }
 
 interface ListingClientProps {
-    reservations?: Reservation[];
+    reservations?: SafeReservation[];
     listing: SafeListing & { user: SafeUser }; currentUser?: SafeUser | null
 }
 
@@ -52,14 +51,14 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing, reservations = [
             return loginModal.onOpen();
         }
         setIsLoading(true);
-        fetch('/api/RESERVATIONS', {
+        fetch('/api/reservations', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
             },
             body: JSON.stringify({ totalPrice, startDate: dateRange.startDate, endDate: dateRange.endDate, listingId: listing?.id }),
         })
-            .then(() => { toast.success("Logement réservé !"); setDateRange(initialDateRange), router.refresh() })
+            .then(() => { toast.success("Logement réservé !"); setDateRange(initialDateRange), router.push('/trips') })
             .catch(() => {
                 toast.error("Quelque chose c'est mal passé !")
             }).finally(() => {

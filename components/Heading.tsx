@@ -4,12 +4,12 @@ interface HeadingProps {
     title: string,
     subtitle?: string;
     center?: boolean
-
+    pageContent?: boolean
 }
 
-const Heading: React.FC<HeadingProps> = ({ title, subtitle, center }) => {
+const Heading: React.FC<HeadingProps> = ({ title, subtitle, center, pageContent }) => {
     return (
-        <div className={center ? 'text-center' : 'text-start'}>
+        <div className={`${center ? 'text-center' : 'text-start'} ${pageContent ? 'mb-12 ml-12' : ''}`}>
             <div className="text-2xl font-bold">
                 {title}
             </div>
