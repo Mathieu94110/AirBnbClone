@@ -31,7 +31,11 @@ const RegisterModal = () => {
             },
             body: JSON.stringify({ keyword: data }),
         })
-            .then(() => registerModal.onClose())
+            .then(() => {
+                toast.success('Compte créer avec succès !');
+                registerModal.onClose();
+                loginModal.onOpen()
+            })
             .catch(() => {
                 toast.error("Quelque chose c'est mal passé !")
             }).finally(() => {
