@@ -14,7 +14,7 @@ const Container: React.FC<ContainerProps> = ({
         isDefaultSearchBar
     } = useSetNavBar();
     return (
-        <div className={`${isDefaultSearchBar ? type === 'navbar' ? 'h-defaultnavheight ' : 'mt-[100px] ' : ' '}
+        <div className={`${isDefaultSearchBar ? type === 'navbar' ? 'h-defaultnavheight ' : 'mt-[120px] ' : ' '}
          ${!isDefaultSearchBar ? type === 'navbar' ? 'h-navheight fixed ' : 'mt-[220px] ' : ' '} bg-white w-full top-0 z-10`} >
             {children}
         </div >

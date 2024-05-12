@@ -95,20 +95,7 @@ function NavBar({ placeholder, currentUser }: NavBarProps) {
           <Search isDefaultSearchBar={isDefaultSearchBar} />
           {isDefaultSearchBar ? <DefaultSearch /> : null}
         </div>
-        {/* <div className="flex items-center md:border-2 rounded-full md:shadow-sm p-2">
-    <input
-      value={searchInput}
-      onChange={(e) => setSearchInput(e.target.value)}
-      onKeyDown={(e) => e.key === "Enter" && search()}
-      placeholder={placeholder}
-      className="flex-grow text-sm text-gray-600 pl-5 placeholder-gray-400 outline-none bg-transparent max-sm:pl-0 max-md:mr-2"
-    />
-    <FontAwesomeIcon
-      icon={faSearch}
-      style={{ fontSize: 24 }}
-      className="h-8 hidden md:inline-flex p-2 mx-auto cursor-pointer md:mx-2 bg-red-400 rounded-full text-white"
-    />
-  </div> */}
+
         <div className="hidden flex items-center text-gray-500 justify-end space-x-4 sm:inline-flex max-sm:col-span-2">
           <UserMenu currentUser={currentUser} />
         </div>

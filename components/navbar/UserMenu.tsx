@@ -1,16 +1,16 @@
 'use client';
 
-import { faBars, faGlobe, faL, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faGlobe, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import MenuItem from './MenuItem';
 import useRegisterModal from '@/hooks/useRegisterModal';
 import useLoginModal from '@/hooks/useLoginModal';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/types';
-import RentModal from '../modals/RentModal';
 import useRentModal from '@/hooks/useRentModal';
 import { useRouter } from 'next/navigation'
+import UseOnClickOutside from '@/hooks/useOnClickOutside';
 
 interface UserMenuProps {
     currentUser?: SafeUser | null
@@ -22,6 +22,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     const loginModal = useLoginModal();
     const rentModal = useRentModal();
     const router = useRouter();
+    const userDropdowMenuRef = useRef<HTMLDivElement>(null);
+
+    const clickOutsidehandler = () => {
+        setIsOpen(false)
+    };
+
+    UseOnClickOutside(userDropdowMenuRef, clickOutsidehandler);
+
     const toggleOpen = (() => {
         setIsOpen((value) => !value)
     })
@@ -31,6 +39,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         }
         rentModal.onOpen()
     }, [currentUser, loginModal, rentModal])
+
+
 
     return (
         <div className="relative">
@@ -54,7 +64,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 </div>
             </div>
             {isOpen && (
-                <div className='absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm'>
+                <div ref={userDropdowMenuRef} className='absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm'>
                     <div className="flex flex-col cursor-pointer">
                         {currentUser ? (
                             <>
@@ -77,6 +87,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                                 <MenuItem
                                     onClick={rentModal.onOpen}
                                     label='Mettre mon logement sur Airbnb'
+                                />
+                                <MenuItem
+                                    onClick={signOut}
+                                    label='Se déconnecter'
                                 />
                             </>
                         ) : (

@@ -37,7 +37,7 @@ const HomeCards = async () => {
           <h2 className="text-4-xl font-semibold py-8">Partez en France</h2>
           <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 ml-3">
             {cardsData?.map(({ img, title }) => (
-              <MediumCard key={img} img={img} title={title} />
+              <MediumCard key={title} img={img} title={title} />
             ))}
           </div>
         </section>
