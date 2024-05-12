@@ -9,6 +9,7 @@ import getCurrentUser from './actions/getCurrentUser';
 import RentModal from '@/components/modals/RentModal';
 import './globals.css';
 import SearchModal from '@/components/modals/SearchModal';
+import Footer from '@/components/Footer';
 
 const font = Nunito({
     subsets: ["latin"]
@@ -35,7 +36,10 @@ const RootLayout = async ({
                         <NavBar placeholder="Commencer vos recherches" currentUser={currentUser} />
                     </ClientOnly>
                 </Container>
-                {children}
+                <main>
+                    {children}
+                </main>
+                <Footer />
             </body>
         </html>
     )

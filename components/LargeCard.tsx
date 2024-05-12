@@ -12,8 +12,8 @@ function LargeCard({
   buttonText: string;
 }) {
   return (
-    <section className="relative py-16 cursor-pointer">
-      <div className="relative h-96 min-w-[300px]">
+    <div className="relative mt-12">
+      <div className="cursor-pointer h-96 min-w-[300px]">
         <Image
           src={image}
           alt={image}
@@ -28,7 +28,7 @@ function LargeCard({
           {buttonText}
         </button>
       </div>
-    </section>
+    </div>
   );
 }
 export default LargeCard;

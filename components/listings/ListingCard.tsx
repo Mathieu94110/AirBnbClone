@@ -63,7 +63,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
                     <Image
                         fill
                         alt="Accomodations"
-                        src={data.imageSrc}
+                        src={data.imageSrc ? data.imageSrc : '/images/no-picture.jpg'}
                         className="object-cover  h-full w-full group-hover:scale-110 transition"
                     />
                     <div className="absolte top-3 right-3">

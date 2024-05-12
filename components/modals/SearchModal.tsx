@@ -75,16 +75,12 @@ const SearchModal = () => {
         }
 
         const url = qs.stringifyUrl({
-            url: "/user/accomodations",
+            url: "/",
             query: updatedQuery
         }, { skipNull: true });
-        // const url = qs.stringifyUrl({
-        //     url: "/",
-        //     query: updatedQuery
-        // }, { skipNull: true });
+
         setStep(STEPS.LOCATION);
         searchModal.onClose();
-        alert(url)
         router.push(url)
     }, [step, searchModal, location, router, guestCount, roomCount, bathroomCount, dateRange, onNext, params]);
 
