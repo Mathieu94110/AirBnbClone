@@ -3,12 +3,15 @@ import Container from '@/components/Container'
 import EmptyState from '@/components/EmptyState';
 import ListingCard from '@/components/listings/ListingCard';
 import getCurrentUser from 'actions/getCurrentUser';
-import { getListings } from 'actions/getListings';
+import getListings, { IlistingsParams } from 'actions/getListings';
 import AccomodationsClient from './AccomodationsClient';
 
+interface IAccomodationsPageProps {
+    searchParams: IlistingsParams
+}
 
-const AccomodationsPage = async () => {
-    const listings = await getListings();
+const AccomodationsPage = async ({ searchParams }: IAccomodationsPageProps) => {
+    const listings = await getListings(searchParams);
     const currentUser = await getCurrentUser();
 
     if (listings.length === 0) {

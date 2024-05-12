@@ -20,7 +20,8 @@ const EmptyState: React.FC<EmptyState> = ({ title = "Pas de correspondance", sub
                 subtitle={subtitle}
             />
             <div className="w-48 mt-4">
-                {showReset && (<Button outline label="Supprimer les filtres" onClick={() => router.push('/user/accomodations')} />
+                {/* {showReset && (<Button outline label="Supprimer les filtres" onClick={() => router.push('/user/accomodations')} /> */}
+                {showReset && (<Button outline label="Supprimer les filtres" onClick={() => router.push('/')} />
                 )}
             </div>
         </div>
