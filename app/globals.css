@@ -10,3 +10,65 @@
     width: 100% !important;
     font-size: 16px !important;
 }
+
+/* Animation for Navbar*/
+.nav-bar-enter {
+    border-bottom: 1px;
+    /* Ok*/
+    /* opacity: 0; */
+    /* transform: translateY(-20px); */
+}
+
+/* .nav-bar-enter-active, */
+.nav-bar-enter-done {
+    border-bottom: 1px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav-bar-active {
+    transition: border 1s;
+}
+
+.nav-bar-exit {
+    border-bottom: 1px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* .nav-bar-exit-active, */
+.nav-bar-enter-active {
+    transition: border 1s,
+}
+
+.nav-bar-exit-done {
+    border-bottom: 1px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Search Component inside*/
+.search-bar-enter {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.search-bar-enter-active,
+.search-bar-enter-done {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.search-bar-active {
+    transition: opacity 1s, transform 1s;
+}
+
+.search-bar-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.search-bar-exit-active,
+.search-bar-enter-active {
+    transition: opacity 1s, transform 1s;
+}

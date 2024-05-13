@@ -63,7 +63,7 @@ const HomeListing: React.FC<TripsClientProps> = ({ listings,
     return (
         <Container>
             {inFrance.length ? (<>   <Heading
-                title="AirBnb en France"
+                title="En France"
                 subtitle='Logements situés en France'
                 pageContent
             />
@@ -76,7 +76,7 @@ const HomeListing: React.FC<TripsClientProps> = ({ listings,
             {allOverTheWorld.length ? (
                 <>
                     <Heading
-                        title="AirBnb à l'étranger"
+                        title="A l'étranger"
                         subtitle="Logements situés à l'étranger"
                         pageContent
                     />

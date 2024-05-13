@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 
 export function useSetNavBar() {
-    const [isDefaultSearchBar, setIsDefaultSearchBar] = useState<boolean>(true);
+    const [isAdvancedSearchBar, setIsAdvancedSearchBar] = useState<boolean>(true);
 
     const handleScroll = (e: Event) => {
         if (window.scrollY >= 30) {
-            setIsDefaultSearchBar(false)
+            setIsAdvancedSearchBar(false)
         } else {
-            setIsDefaultSearchBar(true)
+            setIsAdvancedSearchBar(true)
         }
     }
     useEffect(() => {
@@ -18,6 +18,6 @@ export function useSetNavBar() {
     }, []);
 
     return {
-        isDefaultSearchBar,
+        isAdvancedSearchBar,
     };
 }
