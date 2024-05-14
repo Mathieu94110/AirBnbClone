@@ -13,14 +13,11 @@ import Heading from '../Heading';
 import Counter from '../inputs/Counter';
 import Calendar from '../inputs/Calendar';
 
-
 enum STEPS {
     LOCATION = 0,
     DATE = 1,
     INFO = 2
 }
-
-
 
 const SearchModal = () => {
     const router = useRouter();

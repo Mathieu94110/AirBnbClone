@@ -4,7 +4,7 @@ export const config = {
     matcher: [
         "/trips",
         "/reservations",
-        "/properties",
+        "/user/accomodations",
         "/favorites"
     ]
 }

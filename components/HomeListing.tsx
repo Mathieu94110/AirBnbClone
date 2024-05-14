@@ -1,11 +1,9 @@
 "use client"
 
-import { useRouter } from "next/navigation";
 import Container from "@/components/Container";
 import Heading from "@/components/Heading";
 import { SafeListing, SafeUser } from "@/types"
-import { useCallback, useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 import ListingCard from "@/components/listings/ListingCard";
 import LargeCard from "./LargeCard";
 import ClientOnly from "./ClientOnly";
@@ -19,21 +17,8 @@ interface TripsClientProps {
 const HomeListing: React.FC<TripsClientProps> = ({ listings,
     currentUser }
 ) => {
-    const router = useRouter();
-    const [deletingId, setDeletingId] = useState<string>('');
     const [inFrance, setInFrance] = useState<SafeListing[]>([]);
     const [allOverTheWorld, setAllOverTheWorld] = useState<SafeListing[]>([]);
-
-    const onCancel = useCallback((id: string) => {
-        setDeletingId(id);
-        fetch(`/api/reservations/${id}`, {
-            method: 'DELETE'
-        }).then(() => { toast.success('Reservation annulée !'), router.refresh() }).catch((error) => {
-            toast.error(error?.response?.data?.error)
-        }).finally(() => {
-            setDeletingId('')
-        })
-    }, [router])
 
     useEffect(() => {
         const InFranceAccomodations = listings.filter((listing) => listing.locationValue && listing.locationValue === "FR");

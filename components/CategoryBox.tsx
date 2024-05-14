@@ -9,7 +9,6 @@ interface CategoryBoxProps {
     icon: IconType;
     label: string;
     selected?: boolean;
-    description: string
 }
 
 const CategoryBox: React.FC<CategoryBoxProps> = ({ icon: Icon, label, selected }) => {

@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import Button from '../Button';
 import UseOnClickOutside from '@/hooks/useOnClickOutside';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 interface ModalProps {
     isOpen?: boolean;
@@ -19,7 +20,7 @@ interface ModalProps {
 
 }
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit, title, body, footer, actionLabel, disabled, secondaryAction, secondaryActionLabel }) => {
-    const [showModal, setShowModal] = useState<boolean>(isOpen);
+    const [showModal, setShowModal] = useState<boolean | undefined>(isOpen);
     const modalRef = useRef<HTMLDivElement>(null);
 
     const clickOutsidehandler = () => {

@@ -11,11 +11,11 @@ const Container: React.FC<ContainerProps> = ({
     type
 }) => {
     const {
-        isDefaultSearchBar
+        isAdvancedSearchBar
     } = useSetNavBar();
     return (
-        <div className={`${isDefaultSearchBar ? type === 'navbar' ? 'h-defaultnavheight ' : 'mt-[120px] ' : ' '}
-         ${!isDefaultSearchBar ? type === 'navbar' ? 'h-navheight fixed ' : 'mt-[300px] ' : ' '} bg-white w-full top-0 z-10`} >
+        <div className={`${isAdvancedSearchBar ? type === 'navbar' ? 'h-defaultnavheight ' : 'mt-[120px] ' : ' '}
+         ${!isAdvancedSearchBar ? type === 'navbar' ? 'h-navheight fixed ' : 'mt-[300px] ' : ' '} bg-white w-full top-0 z-10`} >
             {children}
         </div >
     )
