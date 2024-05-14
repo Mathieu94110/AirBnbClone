@@ -1,31 +1,45 @@
-import ClientOnly from '@/components/ClientOnly'
-import Container from '@/components/Container'
-import EmptyState from '@/components/EmptyState';
-import ListingCard from '@/components/listings/ListingCard';
-import getCurrentUser from 'actions/getCurrentUser';
-import getListings, { IlistingsParams } from 'actions/getListings';
-import AccomodationsClient from './AccomodationsClient';
+import EmptyState from "@/components/EmptyState";
+import ClientOnly from "@/components/ClientOnly";
+import getCurrentUser from "actions/getCurrentUser";
+import AccomodationsClient from "./AccomodationsClient";
+import getListings from "actions/getListings";
 
-interface IAccomodationsPageProps {
-    searchParams: IlistingsParams
-}
-
-const AccomodationsPage = async ({ searchParams }: IAccomodationsPageProps) => {
-    const listings = await getListings(searchParams);
+const UserAccomodationsPage = async () => {
     const currentUser = await getCurrentUser();
 
-    if (listings.length === 0) {
-        <ClientOnly>
-            <EmptyState showReset />
-        </ClientOnly>
+    if (!currentUser) {
+        return (
+            <ClientOnly>
+                <EmptyState
+                    title="Non autorisé"
+                    subtitle="Il faut vous connecter"
+                />
+            </ClientOnly>
+        )
     }
+
+    const listings = await getListings({ userId: currentUser.id });
+
+
+    if (listings.length === 0) {
+        return (
+            <ClientOnly>
+                <EmptyState
+                    title="Aucun logement trouvé"
+                    subtitle="Vous n'avez pas créer de logement"
+                />
+            </ClientOnly>
+        )
+    }
+
     return (
         <ClientOnly>
-            <Container>
-                <AccomodationsClient listings={listings} currentUser={currentUser} />
-            </Container>
+            <AccomodationsClient
+                listings={listings}
+                currentUser={currentUser}
+            />
         </ClientOnly>
     )
 }
 
-export default AccomodationsPage
+export default UserAccomodationsPage;
