@@ -40,6 +40,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         rentModal.onOpen()
     }, [currentUser, loginModal, rentModal])
 
+    const navigateAndCloseMenu = (path: string) => {
+        router.push(path);
+        setIsOpen(false)
+    }
 
 
     return (
@@ -69,19 +73,19 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                         {currentUser ? (
                             <>
                                 <MenuItem
-                                    onClick={() => router.push("/trips")}
+                                    onClick={() => navigateAndCloseMenu("/trips")}
                                     label='Mes séjours'
                                 />
                                 <MenuItem
-                                    onClick={() => router.push('/favorites')}
+                                    onClick={() => navigateAndCloseMenu('/favorites')}
                                     label='Mes favoris'
                                 />
                                 <MenuItem
-                                    onClick={() => router.push('/reservations')}
+                                    onClick={() => navigateAndCloseMenu('/reservations')}
                                     label='Mes réservations'
                                 />
                                 <MenuItem
-                                    onClick={() => router.push('/user/accomodations')}
+                                    onClick={() => navigateAndCloseMenu('/user/accomodations')}
                                     label='Mes logements'
                                 />
                                 <MenuItem

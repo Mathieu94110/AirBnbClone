@@ -7,9 +7,9 @@ import ToastProvider from '@/providers/ToastProvider';
 import LoginModal from '@/components/modals/LoginModal';
 import getCurrentUser from './actions/getCurrentUser';
 import RentModal from '@/components/modals/RentModal';
-import './globals.css';
 import SearchModal from '@/components/modals/SearchModal';
 import Footer from '@/components/Footer';
+import './globals.css';
 
 const font = Nunito({
     subsets: ["latin"]
@@ -24,22 +24,21 @@ const RootLayout = async ({
 
     return (
         <html lang="en">
+
             <body className={font.className}>
                 {/*Container below is user in order to set navbar height and home margin top depending on scroll*/}
-                <Container type='navbar'>
-                    <ClientOnly>
-                        <ToastProvider />
-                        <LoginModal />
-                        <RegisterModal />
-                        <RentModal />
-                        <SearchModal />
+                <ClientOnly>
+                    <ToastProvider />
+                    <LoginModal />
+                    <RegisterModal />
+                    <RentModal />
+                    <SearchModal />
+                    <Container type='navbar'>
                         <NavBar placeholder="Commencer vos recherches" currentUser={currentUser} />
-                    </ClientOnly>
-                </Container>
-                <main>
+                    </Container>
                     {children}
-                </main>
-                <Footer />
+                    <Footer />
+                </ClientOnly>
             </body>
         </html>
     )

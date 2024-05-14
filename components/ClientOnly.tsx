@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-
+import Loader from './loader';
 const ClientOnly = ({ children }: { children: React.ReactNode }) => {
     const [hasMounted, setHasMounted] = useState<boolean>(false);
 
@@ -10,7 +10,7 @@ const ClientOnly = ({ children }: { children: React.ReactNode }) => {
     }, [])
 
     if (!hasMounted) {
-        return null
+        return <Loader />
     }
 
     return (

@@ -38,7 +38,7 @@ const Categories = () => {
     }
     return (
         <div className="max-w-[2520px] mx-auto xl:px-20 md:px-8 px-2 bg-white">
-            <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
+            <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto no-scrollbar">
                 {categories.map((item) => (
                     <CategoryBox key={item.label} label={item.label} selected={category === item.label} icon={item.icon} />
                 ))}
